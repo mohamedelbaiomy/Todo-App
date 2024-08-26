@@ -9,7 +9,7 @@ class RequestProvider with ChangeNotifier {
   TextEditingController descriptionController = TextEditingController();
 
   TodoModel? todoModel;
-  bool isLoading = false;
+  bool isLoading = true;
   bool isError = false;
 
   Future<void> fetchData() async {
@@ -17,7 +17,7 @@ class RequestProvider with ChangeNotifier {
       isLoading = true;
       isError = false;
       notifyListeners();
-      Map<String, dynamic> todoData = await ApiHelper.getData(
+      final todoData = await ApiHelper.getData(
         "https://api.nstack.in/v1/todos?page=1&limit=10",
       );
       todoModel = TodoModel.fromMap(todoData);

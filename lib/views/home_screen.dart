@@ -40,9 +40,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             : requestProvider.isError
-                ? const Center(
-                    child: Text(
-                      "Error Happened",
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Error Happened",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 30,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            requestProvider.fetchData();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white70,
+                            foregroundColor: Colors.black,
+                          ),
+                          child: const Text("try again"),
+                        ),
+                      ],
                     ),
                   )
                 : LiquidPullToRefresh(
@@ -54,6 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           "No Todo found",
                           style: TextStyle(
+                            color: Colors.white70,
+                            fontStyle: FontStyle.normal,
                             fontSize: 30,
                           ),
                         ),
